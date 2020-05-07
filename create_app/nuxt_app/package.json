@@ -1,0 +1,18 @@
+{
+  "name": "nuxt_app",
+  "version": "1.0.0",
+  "description": "My epic Nuxt.js project",
+  "author": "yuki-snow1823",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "vuex-persistedstate": "^3.0.1"
+  },
+  "devDependencies": {}
+}

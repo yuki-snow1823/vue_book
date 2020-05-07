@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My first Vue app</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .hello {
+      font-size: 20pt;
+      font-weight: bold;
+      border: 1px solid magenta;
+      padding: 5px 10px 0px 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Vue.js</h1>
+  <div id="app">
+    {{ message }}
+  </div>
+  <hr>
+  <input type="text" onInput="doAction(event);">
+  <script>
+    var data = {
+      message: 'please type!'
+    };
+
+
+    var app = new Vue({
+      el: '#app',
+      data: data
+    })
+
+
+    function doAction(event) {
+      data.message = event.target.value;
+    }
+  </script>
+</body>
