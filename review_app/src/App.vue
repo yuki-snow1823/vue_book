@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <v-content>
-      <HelloWorld />
+      <HelloWorld :title="message" v-on:send-event="acceptEvent"/>
+      <h2>{{ greet }}</h2>
     </v-content>
   </v-app>
 </template>
@@ -14,9 +15,15 @@
     components: {
       HelloWorld,
     },
-    data: function(){
+    data: function () {
       return {
-
+        message: "おはようございます",
+        greet: "今日の挨拶"
+      }
+    },
+    methods: {
+      acceptEvent(accept){
+        this.greet = accept 
       }
     }
   };
