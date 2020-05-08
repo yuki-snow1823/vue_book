@@ -10,6 +10,8 @@
     </v-row>
     <v-row>
       <input type="text" v-model="test">
+      <input type="number" v-model="calc">
+      <p>watchの結果：{{ watchTest }}</p>
     </v-row>
   </v-container>
 </template>
@@ -26,7 +28,9 @@
     },
     data: function () {
       return {
-        message: "こんばんは"
+        message: "こんばんは",
+        calc: 0,
+        watchTest: 0
       }
     },
     methods: {
@@ -42,13 +46,19 @@
       test: {
         get: function () {
           // ゲッターは値を算出し、入力に使う
-          return this.message + "ゲッターとして初期値が表示されています。"
+          return this.message
         },
         set: function (set) {
           // setの引数は入力された値
           // それを利用して書き換えることができる
           this.message = "change" + set 
         }
+      }
+    },
+    watch: {
+      // 同時にいろいろな場所を変更する際に有効
+      calc: function(value){
+        this.watchTest = value
       }
     }
   }
