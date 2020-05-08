@@ -1,9 +1,16 @@
 <template>
   <v-container>
-    <p>{{ message }}</p>
-    <p>{{ title }}</p>
-    <v-btn @click="changeTitle">普通のボタンです。</v-btn>
-    <v-btn @click="changeWord">親にイベントを渡すボタンです。</v-btn>
+    <v-row>
+      <v-col cols="12" md="2">
+        <v-btn @click="changeTitle">タイトル変更</v-btn>
+      </v-col>
+      <v-col cols="12" md="2">
+        <v-btn @click="changeWord">親にイベントを渡す</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <input type="text" v-model="test">
+    </v-row>
   </v-container>
 </template>
 
@@ -11,12 +18,15 @@
   export default {
     name: 'HelloWorld',
     props: {
-      title: String
+      // バリデーションをかけることもできる
+      title: {
+        type: String,
+        // default: "デフォルト値の設定もできる"
+      }
     },
     data: function () {
       return {
         message: "こんばんは"
-
       }
     },
     methods: {
@@ -24,8 +34,21 @@
         this.message = "こんにちは"
       },
       changeWord() {
-        this.$emit('send-event',this.message)
+        this.$emit('send-event', this.message)
         // 名前 + 引数(実際に送るものを書く)
+      }
+    },
+    computed: {
+      test: {
+        get: function () {
+          // ゲッターは値を算出し、入力に使う
+          return this.message + "ゲッターとして初期値が表示されています。"
+        },
+        set: function (set) {
+          // setの引数は入力された値
+          // それを利用して書き換えることができる
+          this.message = "change" + set 
+        }
       }
     }
   }

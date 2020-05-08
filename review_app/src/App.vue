@@ -3,6 +3,7 @@
     <v-content>
       <HelloWorld :title="message" v-on:send-event="acceptEvent"/>
       <h2>{{ greet }}</h2>
+      <h2>{{ message }}</h2>
     </v-content>
   </v-app>
 </template>
