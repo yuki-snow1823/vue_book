@@ -13,6 +13,13 @@
       <input type="number" v-model="calc">
       <p>watchの結果：{{ watchTest }}</p>
     </v-row>
+    <v-row>
+      <v-btn @click="transe">トランジション</v-btn>
+      <!-- classじゃなくてnameで指定する -->
+      <transition name="transit">
+        <p v-if="flag" class="word">文字</p>
+      </transition>
+    </v-row>
   </v-container>
 </template>
 
@@ -30,7 +37,8 @@
       return {
         message: "こんばんは",
         calc: 0,
-        watchTest: 0
+        watchTest: 0,
+        flag: true
       }
     },
     methods: {
@@ -40,6 +48,9 @@
       changeWord() {
         this.$emit('send-event', this.message)
         // 名前 + 引数(実際に送るものを書く)
+      },
+      transe(){
+        this.flag = !this.flag
       }
     },
     computed: {
@@ -63,3 +74,29 @@
     }
   }
 </script>
+
+<style >
+.transit-enter-active {
+  transition: opacity 0.5s;
+}
+.transit-enter {
+  opacity: 0;
+}
+.transit-enter-to {
+  opacity: 1.0;
+}
+.transit-leave {
+  opacity: 1.0;
+}
+.transit-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+}
+.transit-leave-active {
+  transition: opacity 5.0s;
+}
+.word {
+  background-color: green;
+  font-size: 20px;
+}
+</style>
